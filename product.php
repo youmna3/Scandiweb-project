@@ -14,7 +14,7 @@ require_once('./layouts/header.php');
 
     <hr>
     <div class="container">
-        <div class="row row-cols-3">
+        <div class="row row-cols-4">
             <?php
             $product = new Product();
             //$product->getProducts();
@@ -35,9 +35,26 @@ require_once('./layouts/header.php');
                     <h6>Price: $
                         <?= $product['price'] ?>
                     </h6>
-                    <h6>size/weight/dimensions
-                        <?= $product['type_id'] ?>
-                    </h6>
+                    <?php if (isset($product['weight'])): ?>
+                        <h6>Weight:
+                            <?= $product['weight'] ?>KG
+                        </h6>
+                    <?php endif; ?>
+                    <?php if (isset($product['size'])): ?>
+                        <h6>Size:
+                            <?= $product['size'] ?>MB
+                        </h6>
+                    <?php endif; ?>
+                    <?php if (isset($product['length'])): ?>
+                        <h6>Size:
+                            Length
+                            <?= $product['length'] ?>cm X
+                            Width
+                            <?= $product['width'] ?>cm X
+                            Height
+                            <?= $product['height'] ?>cm
+                        </h6>
+                    <?php endif; ?>
                 </div>
                 <?php
             }
