@@ -9,7 +9,6 @@ require_once('./layouts/header.php');
             <a class="p-2 bd-highlight btn btn-success" type="button" href="addProduct.php">SAVE</a>
             <button class="p-2 bd-highlight btn btn-secondary" type="button">Cancel</button>
         </div>
-        <hr>
     </div>
     <hr>
 </body>

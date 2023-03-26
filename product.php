@@ -20,7 +20,11 @@ require_once('./layouts/header.php');
             //$product->getProducts();
             foreach ($product->getProducts() as $product) {
                 ?>
-                <div class='border'>
+                <div class="product">
+                    <div class="form-check">
+                        <input class="delete-checkbox form-check-input position-static" type="checkbox"
+                            value="<?= $product['id'] ?>" aria-label="...">
+                    </div>
                     <h6>SKU:
                         <?=
                             $product['sku'] ?>
@@ -28,7 +32,7 @@ require_once('./layouts/header.php');
                     <h6>Name:
                         <?= $product['name'] ?>
                     </h6>
-                    <h6>Price:
+                    <h6>Price: $
                         <?= $product['price'] ?>
                     </h6>
                     <h6>size/weight/dimensions
