@@ -1,15 +1,15 @@
 <?php
 require_once('./layouts/header.php');
-// $product = new Product();
-// print_r($product->getProducts());
-// $product->getProducts();
+
 ?>
 
-<body>
-    <div class="d-grid gap-2 d-md-block">
-        <h1>Product List</h1>
-        <a class="btn btn-primary" type="button" href="addProduct.php">ADD</a>
-        <button class="btn btn-primary" type="button">MASS DELETE</button>
+<body class="d-flex flex-column min-vh-100">
+    <div class="d-flex bd-highlight">
+        <h1 class="p-2 flex-grow-1 bd-highlight">Product List</h1>
+        <div class="d-grid gap-2 d-md-block">
+            <a class="btn btn-primary" type="button" href="addProduct.php">ADD</a>
+            <button class="btn btn-danger" type="button">MASS DELETE</button>
+        </div>
     </div>
 
     <hr>
@@ -40,4 +40,5 @@ require_once('./layouts/header.php');
             ?>
         </div>
     </div>
+
     <?php require('./layouts/footer.php'); ?>

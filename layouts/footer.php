@@ -1,7 +1,7 @@
 </div>
 </main>
 
-<footer class="text-center mt-5">
+<footer class="mt-auto">
     Scandiweb Project &copy; 2022
 </footer>
 
