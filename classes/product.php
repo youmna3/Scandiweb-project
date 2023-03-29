@@ -1,19 +1,50 @@
 <?php
-class Product extends Dhb
+
+abstract class Product extends ProductRepository
 {
-    public function getProducts()
+    public $id;
+    public $sku;
+    public $name;
+    public $price;
+
+
+    public function __construct($id, $sku, $name, $price)
     {
-        $sql = "SELECT product.*, book.weight, DVD.size, furniture.height, furniture.length, furniture.width
-        FROM product
-        LEFT JOIN type_product ON product.type_id = type_product.id
-        LEFT JOIN book ON type_product.book_id = book.id
-        LEFT JOIN DVD ON type_product.dvd_id = DVD.id
-        LEFT JOIN furniture ON type_product.furniture_id = furniture.id";
-        $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
-        while ($result = $stmt->fetchAll()) {
-            return $result;
-        }
+        $this->id = $id;
+        $this->sku = $sku;
+        $this->name = $name;
+        $this->price = $price;
     }
 
+    public function getSku()
+    {
+        return $this->sku;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    public function displayProduct()
+    {
+        ?>
+        <h6>SKU:
+            <?= $this->getSku() ?>
+        </h6>
+        <h6>Name:
+            <?= $this->getName() ?>
+        </h6>
+        <h6>Price: $
+            <?= $this->getPrice() ?>
+        </h6>
+        <?php
+    }
 }
+?>
