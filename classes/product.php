@@ -1,6 +1,6 @@
 <?php
 
-abstract class Product extends ProductRepository
+abstract class Product
 {
     public $id;
     public $sku;
@@ -34,7 +34,9 @@ abstract class Product extends ProductRepository
 
     public function displayProduct()
     {
+
         ?>
+
         <h6>SKU:
             <?= $this->getSku() ?>
         </h6>

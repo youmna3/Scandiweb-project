@@ -45,7 +45,7 @@ class Furniture extends Product
     {
         parent::displayProduct();
         ?>
-        <h6>Weight:
+        <h6>Dimensions:
             <?= $this->getLength() ?>CM X
             <?= $this->getWidth() ?>CM X
             <?= $this->getHeight() ?>CM

@@ -3,7 +3,9 @@ include('./layouts/header.php');
 
 $productRepository = new ProductRepository();
 $products = $productRepository->getProducts();
-
+echo '<pre>';
+print_r($products);
+echo '</pre>';
 ?>
 
 <body class="d-flex flex-column min-vh-100">
@@ -19,14 +21,19 @@ $products = $productRepository->getProducts();
     <div class="container">
         <div class="row row-cols-4 justify-content-center">
             <?php
+            $productClasses = [
+                'weight' => ['Book', ['weight']],
+                'size' => ['DVD', ['size']],
+                'length' => ['Furniture', ['length', 'width', 'height']]
+            ];
+
             foreach ($products as $product) {
-                if (isset($product['weight'])) {
-                    $productObject = new Book($product['id'], $product['sku'], $product['name'], $product['price'], $product['weight']);
-                } elseif (isset($product['size'])) {
-                    $productObject = new DVD($product['id'], $product['sku'], $product['name'], $product['price'], $product['size']);
-                } elseif (isset($product['length'])) {
-                    $productObject = new Furniture($product['id'], $product['sku'], $product['name'], $product['price'], $product['length'], $product['width'], $product['height']);
-                }
+                $productClassKey = key(array_filter(array_intersect_key($product, $productClasses), fn($value) => !is_null($value)));
+                [$productClass, $productProperties] = $productClasses[$productClassKey];
+                $productArgs = array_merge([$product['id'], $product['sku'], $product['name'], $product['price']], array_map(fn($prop) => $product[$prop], $productProperties));
+                $productObject = new $productClass(...$productArgs);
+                //var_dump($productObject);
+            
                 ?>
                 <div class="product">
                     <div class="form-check">

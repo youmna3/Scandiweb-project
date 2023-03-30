@@ -20,7 +20,7 @@ class DVD extends Product
     {
         parent::displayProduct();
         ?>
-        <h6>Weight:
+        <h6>size:
             <?= $this->getSize() ?>MB
         </h6>
         <?php
