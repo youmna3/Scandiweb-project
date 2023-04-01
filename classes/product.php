@@ -48,5 +48,6 @@ abstract class Product
         </h6>
         <?php
     }
+
 }
 ?>

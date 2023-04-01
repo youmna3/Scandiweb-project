@@ -16,4 +16,17 @@ class ProductRepository extends Dhb
         }
     }
 
+    public function delete($id)
+    {
+        echo "delete function called with id: $id<br>";
+        $sql = "DELETE FROM product WHERE id = :id";
+        $stmt = $this->connect()->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $result = $stmt->execute();
+        if (!$result) {
+            print_r($stmt->errorInfo());
+        }
+        return $result;
+    }
+
 }
