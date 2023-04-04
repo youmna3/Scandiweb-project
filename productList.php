@@ -4,6 +4,7 @@ include('./layouts/header.php');
 $productRepository = new ProductRepository();
 $products = $productRepository->getProducts();
 
+//$test = $productRepository->addProduct('GGG123456', 'HOW', 5);
 echo '<pre>';
 print_r($products);
 echo '</pre>';
@@ -52,7 +53,7 @@ echo '</pre>';
                             value="<?= $productObject->id ?>" aria-label="...">
 
                     </div>
-                    <?php echo $productObject->displayProduct() ?>
+                    <?php $productObject->displayProduct() ?>
                 </div>
                 <?php
             }

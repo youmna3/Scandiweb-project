@@ -20,14 +20,25 @@ abstract class Product
     {
         return $this->sku;
     }
+    public function setSku($sku)
+    {
+        return $this->sku;
+    }
 
     public function getName()
     {
         return $this->name;
     }
-
+    public function SetName($name)
+    {
+        return $this->name;
+    }
 
     public function getPrice()
+    {
+        return $this->price;
+    }
+    public function setPrice($price)
     {
         return $this->price;
     }

@@ -16,13 +16,23 @@ class ProductRepository extends Dhb
         }
     }
 
+    public function addProduct($sku, $name, $price, )
+    {
+        $sql = "INSERT INTO product (sku, name, price)
+                VALUES (:sku, :name, :price)";
+        $stmt = $this->connect()->prepare($sql);
+        $result = $stmt->execute(['sku' => $sku, 'name' => $name, 'price' => $price]);
+        echo $result;
+        return $result;
+    }
+
     public function delete($id)
     {
         echo "delete function called with id: $id<br>";
-        $sql = "DELETE FROM product WHERE id = :id";
+        $sql = "DELETE FROM product WHERE id = :id"; //named parameter
         $stmt = $this->connect()->prepare($sql);
-        $stmt->bindParam(':id', $id);
-        $result = $stmt->execute();
+        //$stmt->bindParam(':id', $id);
+        $result = $stmt->execute([':id' => $id]);
         if (!$result) {
             print_r($stmt->errorInfo());
         }
