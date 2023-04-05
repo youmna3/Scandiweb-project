@@ -4,7 +4,6 @@ include('./layouts/header.php');
 $productRepository = new ProductRepository();
 $products = $productRepository->getProducts();
 
-//$test = $productRepository->addProduct('GGG123456', 'HOW', 5);
 echo '<pre>';
 print_r($products);
 echo '</pre>';

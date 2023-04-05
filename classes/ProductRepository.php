@@ -16,7 +16,7 @@ class ProductRepository extends Dhb
         }
     }
 
-    public function addProduct($sku, $name, $price, )
+    public function addProduct($sku, $name, $price)
     {
         $sql = "INSERT INTO product (sku, name, price)
                 VALUES (:sku, :name, :price)";
@@ -25,6 +25,49 @@ class ProductRepository extends Dhb
         echo $result;
         return $result;
     }
+    public function addBook($weight)
+    {
+        $sql = "INSERT INTO book (weight) VALUES (:weight)";
+        $stmt = $this->connect()->prepare($sql);
+        $result = $stmt->execute(['weight' => $weight]);
+        if ($result) {
+            $lastInsertId = $this->connect()->lastInsertId();
+            return $lastInsertId;
+        }
+
+    }
+    public function addDVD($size)
+    {
+        $sql = "INSERT INTO dvd (size) VALUES (:size)";
+        $stmt = $this->connect()->prepare($sql);
+        $result = $stmt->execute(['size' => $size]);
+        if ($result) {
+            $lastInsertId = $this->connect()->lastInsertId();
+            return $lastInsertId;
+        }
+
+    }
+    public function addF($length, $width, $height)
+    {
+        $sql = "INSERT INTO furniture (length,width,height) VALUES (:length,:width,:height)";
+        $stmt = $this->connect()->prepare($sql);
+        $result = $stmt->execute(['length' => $length, 'width' => $width, 'height' => $height]);
+        if ($result) {
+            $lastInsertId = $this->connect()->lastInsertId();
+            return $lastInsertId;
+        }
+
+    }
+    // public function type($bookId, $dvdId, $furnitureId)
+    // {
+    //     $sql = "INSERT INTO type_product(book_id,dvd_id, furniture_id) VALUES (:book_id,:dvd_id, :furniture_id)";
+    //     $stmt = $this->connect()->prepare($sql);
+    //     $result = $stmt->execute(['book_id' => $bookId, 'dvd_id' => $dvdId, 'furniture_id' => $furnitureId]);
+    //     if ($result) {
+    //         $lastInsertId = $this->connect()->lastInsertId();
+    //         return $lastInsertId;
+    //     }
+    // }
 
     public function delete($id)
     {

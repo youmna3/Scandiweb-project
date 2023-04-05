@@ -1,24 +1,23 @@
 <?php
 require_once('./layouts/header.php');
 $products = new ProductRepository;
-//$products->addBook('TTT123456', 'TEST', 5, 4);
-// if (isset($_POST['submit'])) {
-//     foreach ($products as $product) {
-//         $product = new Book($product['id'], $product['sku'], $product['name'], $product['price'], $product['weight']);
-//         $product->setSku($_POST['name']);
-//         $product->SetName($_POST['description']);
-//         $product->setPrice(($_POST['price']));
-//         $product->setWeight(($_POST['weight']));
-//     }
-//     $product->save();
-// }
 
 if (isset($_POST['submit'])) {
-    $products->addProduct($_POST['sku'], $_POST['name'], $_POST['price']);
-}
-?>
-<!-- <form action="" method="POST"> -->
+    $book = new Book(null, $_POST['sku'], $_POST['name'], $_POST['price'], $_POST['weight']);
+    $dvd = new DVD(null, $_POST['sku'], $_POST['name'], $_POST['price'], $_POST['size']);
+    $furniture = new Furniture(null, $_POST['sku'], $_POST['name'], $_POST['price'], $_POST['length'], $_POST['width'], $_POST['height']);
+    // Insert a new row into the product table
+    $products->addProduct($book->getSku(), $book->getName(), $book->getPrice());
 
+    // Insert a new row into the book table
+    $products->addBook($book->getWeight());
+    $products->addDvd($dvd->getSize());
+    $products->addF($furniture->getLength(), $furniture->getWidth(), $furniture->getHeight());
+    //$products->type($book->$_GET['id'], null, null);
+}
+
+
+?>
 <div class="d-flex flex-column min-vh-100">
     <div class="d-flex bd-highlight">
         <h1 class="p-2 flex-grow-1 bd-highlight">Add Product</h1>
