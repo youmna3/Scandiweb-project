@@ -6,14 +6,15 @@ abstract class Product
     public $sku;
     public $name;
     public $price;
+    public $type_id;
 
-
-    public function __construct($id, $sku, $name, $price)
+    public function __construct($id, $sku, $name, $price, $type_id)
     {
         $this->id = $id;
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
+        $this->type_id = $type_id;
     }
 
     public function getSku()
@@ -58,7 +59,11 @@ abstract class Product
             <?= $this->getPrice() ?>
         </h6>
         <?php
+        //return array();
     }
-
+    public function getTypeId()
+    {
+        return $this->type_id;
+    }
 }
 ?>

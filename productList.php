@@ -40,8 +40,9 @@ echo '</pre>';
             foreach ($products as $product) {
                 $productClassKey = key(array_filter(array_intersect_key($product, $productClasses), fn($value) => !is_null($value)));
                 [$productClass, $productProperties] = $productClasses[$productClassKey];
-                $productArgs = array_merge([$product['id'], $product['sku'], $product['name'], $product['price']], array_map(fn($prop) => $product[$prop], $productProperties));
+                $productArgs = array_merge([$product['id'], $product['sku'], $product['name'], $product['price']], [$product['type_id']], array_map(fn($prop) => $product[$prop], $productProperties));
                 $productObject = new $productClass(...$productArgs);
+
                 //var_dump($productObject);
             
                 ?>

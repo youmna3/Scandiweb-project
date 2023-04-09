@@ -4,9 +4,9 @@ class Furniture extends Product
     public $length;
     public $width;
     public $height;
-    public function __construct($id, $sku, $name, $price, $length, $width, $height)
+    public function __construct($id, $sku, $name, $price, $type_id, $length, $width, $height)
     {
-        parent::__construct($id, $sku, $name, $price);
+        parent::__construct($id, $sku, $name, $price, $type_id);
         $this->length = $length;
         $this->width = $width;
         $this->height = $height;
@@ -51,5 +51,10 @@ class Furniture extends Product
             <?= $this->getHeight() ?>CM
         </h6>
         <?php
+    }
+    public function getTypeId()
+    {
+        parent::getTypeId();
+        // return $this->type_id;
     }
 }

@@ -3,17 +3,27 @@ require_once('./layouts/header.php');
 $products = new ProductRepository;
 
 if (isset($_POST['submit'])) {
-    $book = new Book(null, $_POST['sku'], $_POST['name'], $_POST['price'], $_POST['weight']);
-    $dvd = new DVD(null, $_POST['sku'], $_POST['name'], $_POST['price'], $_POST['size']);
-    $furniture = new Furniture(null, $_POST['sku'], $_POST['name'], $_POST['price'], $_POST['length'], $_POST['width'], $_POST['height']);
-    // Insert a new row into the product table
-    $products->addProduct($book->getSku(), $book->getName(), $book->getPrice());
+    if ($_POST['weight']) {
+        $book = new Book(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['weight']);
+        $book_id = $products->addBook($book->getWeight());
+        $type_id = $products->addType($book_id, null, null);
+        var_dump($type_id);
 
-    // Insert a new row into the book table
-    $products->addBook($book->getWeight());
-    $products->addDvd($dvd->getSize());
-    $products->addF($furniture->getLength(), $furniture->getWidth(), $furniture->getHeight());
-    //$products->type($book->$_GET['id'], null, null);
+        $products->addProduct($book->getSku(), $book->getName(), $book->getPrice(), $type_id);
+    } elseif ($_POST['size']) {
+        $dvd = new DVD(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['size']);
+        $dvd_id = $products->addDVD($dvd->getSize());
+        $type_id = $products->addType(null, $dvd_id, null);
+        var_dump($type_id);
+
+        $products->addProduct($dvd->getSku(), $dvd->getName(), $dvd->getPrice(), $type_id);
+    } elseif ($_POST['length'] && $_POST['width'] && $_POST['height']) {
+
+        $furniture = new Furniture(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['length'], $_POST['width'], $_POST['height']);
+        $furniture_id = $products->addFurniture($furniture->getLength(), $furniture->getWidth(), $furniture->getHeight());
+        $type_id = $products->addType(null, null, $furniture_id);
+        $products->addProduct($furniture->getSku(), $furniture->getName(), $furniture->getPrice(), $type_id);
+    }
 }
 
 
