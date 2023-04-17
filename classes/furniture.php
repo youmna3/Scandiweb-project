@@ -19,7 +19,7 @@ class Furniture extends Product
 
     public function setHeight($height)
     {
-        return $this->height = $height;
+        $this->height = $height;
     }
 
     public function getLength()
@@ -29,7 +29,7 @@ class Furniture extends Product
 
     public function setLength($length)
     {
-        return $this->length = $length;
+        $this->length = $length;
     }
 
     public function getWidth()
@@ -39,7 +39,7 @@ class Furniture extends Product
 
     public function setWidth($width)
     {
-        return $this->width = $width;
+        $this->width = $width;
     }
     public function displayProduct()
     {

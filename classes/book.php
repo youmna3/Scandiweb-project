@@ -2,7 +2,7 @@
 class Book extends Product
 {
     public $weight;
-    function __construct($id, $sku, $name, $price, $type_id, $weight)
+    function __construct($id = null, $sku = null, $name = null, $price = null, $type_id = null, $weight = null)
     {
         parent::__construct($id, $sku, $name, $price, $type_id);
         $this->weight = $weight;
@@ -14,7 +14,7 @@ class Book extends Product
 
     public function setWeight($weight)
     {
-        return $this->weight = $weight;
+        $this->weight = $weight;
     }
     public function displayProduct()
     {
@@ -28,6 +28,6 @@ class Book extends Product
     public function getTypeId()
     {
         parent::getTypeId();
-        // return $this->type_id;
+        return $this->type_id;
     }
 }

@@ -14,7 +14,7 @@ class DVD extends Product
 
     public function setSize($size)
     {
-        return $this->size = $size;
+        $this->size = $size;
     }
     public function displayProduct()
     {

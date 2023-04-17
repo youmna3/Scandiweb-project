@@ -23,7 +23,7 @@ abstract class Product
     }
     public function setSku($sku)
     {
-        return $this->sku;
+        $this->sku = $sku;
     }
 
     public function getName()
@@ -32,7 +32,7 @@ abstract class Product
     }
     public function SetName($name)
     {
-        return $this->name;
+        $this->name;
     }
 
     public function getPrice()
@@ -41,9 +41,18 @@ abstract class Product
     }
     public function setPrice($price)
     {
-        return $this->price;
+        $this->price;
     }
 
+    public function getTypeId()
+    {
+        return $this->type_id;
+    }
+
+    public function setTypeId($id)
+    {
+        $this->type_id = $id;
+    }
     public function displayProduct()
     {
 
@@ -61,9 +70,7 @@ abstract class Product
         <?php
         //return array();
     }
-    public function getTypeId()
-    {
-        return $this->type_id;
-    }
+
+
 }
 ?>
