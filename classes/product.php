@@ -30,6 +30,7 @@ abstract class Product
     {
         return $this->name;
     }
+
     public function SetName($name)
     {
         $this->name;

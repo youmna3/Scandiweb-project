@@ -42,15 +42,15 @@ if (isset($_POST['submit'])) {
             $dvd->setTypeId($type_id);
             $products->addProduct($dvd);
         }
-    } elseif (isset($_POST['length']) && isset($_POST['width']) && isset($_POST['height'])) {
+    } elseif ($_POST['length'] && $_POST['width'] && $_POST['height']) {
         $furniture = new Furniture(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['length'], $_POST['width'], $_POST['height']);
         $furniture_id = $products->addFurniture($furniture);
-        if ($furniture_id) {
-            $type_id = $products->addType(null, null, $furniture_id);
-            $furniture->setTypeId($type_id);
-            $products->addProduct($furniture);
-        }
+        $type_id = $products->addType(null, null, $furniture_id);
+        $furniture->setTypeId($type_id);
+        $products->addProduct($furniture);
+
     }
+
     // $book = new Book();
     // $book->setSku($_POST['sku']);
     // $book->SetName($_POST['name']);

@@ -52,9 +52,9 @@ class Furniture extends Product
         </h6>
         <?php
     }
-    public function getTypeId()
-    {
-        parent::getTypeId();
-        // return $this->type_id;
-    }
+// public function getTypeId()
+// {
+//     parent::getTypeId();
+//     // return $this->type_id;
+// }
 }
