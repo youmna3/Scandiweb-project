@@ -3,8 +3,35 @@ require_once('./layouts/header.php');
 $products = new ProductRepository;
 
 if (isset($_POST['submit'])) {
-    // if (isset($_POST['weight'])) {
+    // $dhb = new Dhb();
+    // $book = new Book(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $dhb, $_POST['weight']);
+    // $book->addProduct();
+
+
+    if ($_POST['weight']) {
+        $book = new Book(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['weight']);
+        $book_id = $products->addBook($book);
+        $type_id = $products->addType($book_id, null, null);
+        $book->setTypeId($type_id);
+        $products->addProduct($book);
+    } elseif ($_POST['size']) {
+        $dvd = new DVD(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['size']);
+        $dvd_id = $products->addDVD($dvd);
+        if ($dvd_id) {
+            $type_id = $products->addType(null, $dvd_id, null);
+            $dvd->setTypeId($type_id);
+            $products->addProduct($dvd);
+        }
+    } else {
+        $furniture = new Furniture(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['length'], $_POST['width'], $_POST['height']);
+        $furniture_id = $products->addFurniture($furniture);
+        $type_id = $products->addType(null, null, $furniture_id);
+        $furniture->setTypeId($type_id);
+        $products->addProduct($furniture);
+    }
+
     /*
+    if (isset($_POST['weight'])) {
     $book = new Book(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['weight']);
     $book_id = $products->addBook($book->getWeight());
     $type_id = $products->addType($book_id, null, null);
@@ -28,28 +55,6 @@ if (isset($_POST['submit'])) {
     // $type_id = $products->addType($book_id, null, null);
     // var_dump($type_id);
     // $products->addProduct($book, $type_id);
-    if ($_POST['weight']) {
-        $book = new Book(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['weight']);
-        $book_id = $products->addBook($book);
-        $type_id = $products->addType($book_id, null, null);
-        $book->setTypeId($type_id);
-        $products->addProduct($book);
-    } elseif ($_POST['size']) {
-        $dvd = new DVD(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['size']);
-        $dvd_id = $products->addDVD($dvd);
-        if ($dvd_id) {
-            $type_id = $products->addType(null, $dvd_id, null);
-            $dvd->setTypeId($type_id);
-            $products->addProduct($dvd);
-        }
-    } elseif ($_POST['length'] && $_POST['width'] && $_POST['height']) {
-        $furniture = new Furniture(null, $_POST['sku'], $_POST['name'], $_POST['price'], null, $_POST['length'], $_POST['width'], $_POST['height']);
-        $furniture_id = $products->addFurniture($furniture);
-        $type_id = $products->addType(null, null, $furniture_id);
-        $furniture->setTypeId($type_id);
-        $products->addProduct($furniture);
-
-    }
 
     // $book = new Book();
     // $book->setSku($_POST['sku']);
@@ -110,6 +115,7 @@ if (isset($_POST['submit'])) {
             <label for="weight" class="col-sm-2 col-form-label">Weight (kg)</label>
             <div class="col-sm-3">
                 <input name="weight" class="form-control" id="weight" placeholder="kg">
+                <?= "Please, provide weight" ?>
             </div>
         </div>
 
@@ -117,6 +123,7 @@ if (isset($_POST['submit'])) {
             <label for="size" class="col-sm-2 col-form-label">Size (MB)</label>
             <div class="col-sm-3">
                 <input name="size" class="form-control" id="size" placeholder="MB">
+                <?= "Please, provide size" ?>
             </div>
         </div>
 
@@ -138,6 +145,7 @@ if (isset($_POST['submit'])) {
             <label for="height" class="col-sm-2 col-form-label">Height (cm)</label>
             <div class="col-sm-3">
                 <input name="height" class="form-control" id="height" placeholder="CM">
+                <?= "Please, provide dimensions" ?>
             </div>
         </div>
     </form>

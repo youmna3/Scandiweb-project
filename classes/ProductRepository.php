@@ -16,6 +16,7 @@ class ProductRepository extends Dhb
             return $result;
         }
     }
+
     public function addProduct(Product $product)
     {
         $pdo = $this->connect();
@@ -87,6 +88,7 @@ class ProductRepository extends Dhb
             var_dump($stmt->errorInfo());
         }
     }
+
     public function addType($book_id, $dvd_id, $furniture_id)
     {
         $pdo = $this->connect();
@@ -105,6 +107,7 @@ class ProductRepository extends Dhb
             var_dump($stmt->errorInfo());
         }
     }
+
     public function delete($id)
     {
         echo "delete function called with id: $id<br>";
@@ -117,193 +120,193 @@ class ProductRepository extends Dhb
         }
         return $result;
     }
-/*
-public function addProduct(Product $product)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO product (sku, name, price,type_id)
-VALUES (:sku, :name, :price,:type_id)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute([
-'sku' => $product->getSku(),
-'name' => $product->getName(),
-'price' => $product->getPrice(),
-'type_id' => $product->getTypeId()
-]);
-return $result;
-}
-public function addBook(Book $book)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO book (weight) VALUES (:weight)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute(['weight' => $book->getWeight()]);
-if ($result) {
-// Get the id of the newly inserted row
-$sql = "SELECT LAST_INSERT_ID()";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$lastInsertId = $stmt->fetchColumn();
-return $lastInsertId;
-} else {
-// Handle error here
-var_dump($stmt->errorInfo());
-}
-}
-public function addDVD(DVD $dvd)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO dvd (size) VALUES (:size)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute(['size' => $dvd->getSize()]);
-if ($result) {
-// Get the id of the newly inserted row
-$sql = "SELECT LAST_INSERT_ID()";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$lastInsertId = $stmt->fetchColumn();
-return $lastInsertId;
-} else {
-// Handle error here
-var_dump($stmt->errorInfo());
-}
-}
-public function addFurniture(Furniture $furniture)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO furniture (length,width,height) VALUES (:length,:width,:height)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute([
-'length' => $furniture->getLength(),
-'width' => $furniture->getWidth(),
-'height' => $furniture->getHeight()
-]);
-if ($result) {
-// Get the id of the newly inserted row
-$sql = "SELECT LAST_INSERT_ID()";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$lastInsertId = $stmt->fetchColumn();
-return $lastInsertId;
-} else {
-// Handle error here
-var_dump($stmt->errorInfo());
-}
-}
-*/
-/*
-public function addProduct($sku, $name, $price, $type_id)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO product (sku, name, price,type_id)
-VALUES (:sku, :name, :price,:type_id)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute(['sku' => $sku, 'name' => $name, 'price' => $price, 'type_id' => $type_id]);
-return $result;
-}
-*/
+    /*
+    public function addProduct(Product $product)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO product (sku, name, price,type_id)
+    VALUES (:sku, :name, :price,:type_id)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute([
+    'sku' => $product->getSku(),
+    'name' => $product->getName(),
+    'price' => $product->getPrice(),
+    'type_id' => $product->getTypeId()
+    ]);
+    return $result;
+    }
+    public function addBook(Book $book)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO book (weight) VALUES (:weight)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(['weight' => $book->getWeight()]);
+    if ($result) {
+    // Get the id of the newly inserted row
+    $sql = "SELECT LAST_INSERT_ID()";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $lastInsertId = $stmt->fetchColumn();
+    return $lastInsertId;
+    } else {
+    // Handle error here
+    var_dump($stmt->errorInfo());
+    }
+    }
+    public function addDVD(DVD $dvd)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO dvd (size) VALUES (:size)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(['size' => $dvd->getSize()]);
+    if ($result) {
+    // Get the id of the newly inserted row
+    $sql = "SELECT LAST_INSERT_ID()";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $lastInsertId = $stmt->fetchColumn();
+    return $lastInsertId;
+    } else {
+    // Handle error here
+    var_dump($stmt->errorInfo());
+    }
+    }
+    public function addFurniture(Furniture $furniture)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO furniture (length,width,height) VALUES (:length,:width,:height)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute([
+    'length' => $furniture->getLength(),
+    'width' => $furniture->getWidth(),
+    'height' => $furniture->getHeight()
+    ]);
+    if ($result) {
+    // Get the id of the newly inserted row
+    $sql = "SELECT LAST_INSERT_ID()";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $lastInsertId = $stmt->fetchColumn();
+    return $lastInsertId;
+    } else {
+    // Handle error here
+    var_dump($stmt->errorInfo());
+    }
+    }
+    */
+    /*
+    public function addProduct($sku, $name, $price, $type_id)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO product (sku, name, price,type_id)
+    VALUES (:sku, :name, :price,:type_id)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(['sku' => $sku, 'name' => $name, 'price' => $price, 'type_id' => $type_id]);
+    return $result;
+    }
+    */
 
 
-/*
-public function addBook($weight)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO book (weight) VALUES (:weight)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute(['weight' => $weight]);
-if ($result) {
-// Get the id of the newly inserted row
-$sql = "SELECT LAST_INSERT_ID()";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$lastInsertId = $stmt->fetchColumn();
-return $lastInsertId;
-} else {
-// Handle error here
-var_dump($stmt->errorInfo());
-}
-}
-*/
-/*
-public function addDVD($size)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO dvd (size) VALUES (:size)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute(['size' => $size]);
-if ($result) {
-// Get the id of the newly inserted row
-$sql = "SELECT LAST_INSERT_ID()";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$lastInsertId = $stmt->fetchColumn();
-return $lastInsertId;
-} else {
-// Handle error here
-var_dump($stmt->errorInfo());
-}
-}
-public function addFurniture($length, $width, $height)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO furniture (length,width,height) VALUES (:length,:width,:height)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute(['length' => $length, 'width' => $width, 'height' => $height]);
-if ($result) {
-// Get the id of the newly inserted row
-$sql = "SELECT LAST_INSERT_ID()";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$lastInsertId = $stmt->fetchColumn();
-return $lastInsertId;
-} else {
-// Handle error here
-var_dump($stmt->errorInfo());
-}
-}
-*/
+    /*
+    public function addBook($weight)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO book (weight) VALUES (:weight)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(['weight' => $weight]);
+    if ($result) {
+    // Get the id of the newly inserted row
+    $sql = "SELECT LAST_INSERT_ID()";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $lastInsertId = $stmt->fetchColumn();
+    return $lastInsertId;
+    } else {
+    // Handle error here
+    var_dump($stmt->errorInfo());
+    }
+    }
+    */
+    /*
+    public function addDVD($size)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO dvd (size) VALUES (:size)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(['size' => $size]);
+    if ($result) {
+    // Get the id of the newly inserted row
+    $sql = "SELECT LAST_INSERT_ID()";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $lastInsertId = $stmt->fetchColumn();
+    return $lastInsertId;
+    } else {
+    // Handle error here
+    var_dump($stmt->errorInfo());
+    }
+    }
+    public function addFurniture($length, $width, $height)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO furniture (length,width,height) VALUES (:length,:width,:height)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(['length' => $length, 'width' => $width, 'height' => $height]);
+    if ($result) {
+    // Get the id of the newly inserted row
+    $sql = "SELECT LAST_INSERT_ID()";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $lastInsertId = $stmt->fetchColumn();
+    return $lastInsertId;
+    } else {
+    // Handle error here
+    var_dump($stmt->errorInfo());
+    }
+    }
+    */
 
 
-/*
-public function addType(Product $product)
-{
-$pdo = $this->connect();
-$typeId = $product->getTypeId();
-$columns = implode(', ', array_keys($typeId));
-$values = implode(', ', array_fill(0, count($typeId), '?'));
-$sql = "INSERT INTO type_product ($columns) VALUES ($values)";
-$stmt = $pdo->prepare($sql);
-$result = $stmt->execute(array_values($typeId));
-if ($result) {
-return $pdo->lastInsertId();
-} else {
-// Handle error here
-}
-}
-*/
-/*
-public function addType(Product $product)
-{
-$pdo = $this->connect();
-$sql = "INSERT INTO type_product (book_id, dvd_id, furniture_id) VALUES (:book_id, :dvd_id, :furniture_id)";
-$stmt = $pdo->prepare($sql);
-$book_id = null;
-$dvd_id = null;
-$furniture_id = null;
-if ($product instanceof Book) {
-$book_id = $product->getTypeId();
-}
-$result = $stmt->execute([
-'book_id' => $book_id,
-'dvd_id' => $dvd_id,
-'furniture_id' => $furniture_id
-]);
-if ($result) {
-return $pdo->lastInsertId();
-} else {
-// Handle error here
-}
-}
-*/
+    /*
+    public function addType(Product $product)
+    {
+    $pdo = $this->connect();
+    $typeId = $product->getTypeId();
+    $columns = implode(', ', array_keys($typeId));
+    $values = implode(', ', array_fill(0, count($typeId), '?'));
+    $sql = "INSERT INTO type_product ($columns) VALUES ($values)";
+    $stmt = $pdo->prepare($sql);
+    $result = $stmt->execute(array_values($typeId));
+    if ($result) {
+    return $pdo->lastInsertId();
+    } else {
+    // Handle error here
+    }
+    }
+    */
+    /*
+    public function addType(Product $product)
+    {
+    $pdo = $this->connect();
+    $sql = "INSERT INTO type_product (book_id, dvd_id, furniture_id) VALUES (:book_id, :dvd_id, :furniture_id)";
+    $stmt = $pdo->prepare($sql);
+    $book_id = null;
+    $dvd_id = null;
+    $furniture_id = null;
+    if ($product instanceof Book) {
+    $book_id = $product->getTypeId();
+    }
+    $result = $stmt->execute([
+    'book_id' => $book_id,
+    'dvd_id' => $dvd_id,
+    'furniture_id' => $furniture_id
+    ]);
+    if ($result) {
+    return $pdo->lastInsertId();
+    } else {
+    // Handle error here
+    }
+    }
+    */
 
 }

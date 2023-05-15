@@ -1,4 +1,6 @@
 <?php
+// require_once('./classes/dhb.php');
+
 class Furniture extends Product
 {
     public $length;
@@ -52,9 +54,41 @@ class Furniture extends Product
         </h6>
         <?php
     }
-// public function getTypeId()
-// {
-//     parent::getTypeId();
-//     // return $this->type_id;
-// }
+    /*
+        public function addProduct()
+        {
+            $pdo = $this->connect();
+            $sql = "INSERT INTO product (sku,name,price,type_id) VALUES (:sku, :name, :price, :type_id)";
+            $stmt = $pdo->prepare($sql);
+            $result = $stmt->execute([
+                'sku' => $this->getSku(),
+                'name' => $this->getName(),
+                'price' => $this->getPrice(),
+                'type_id' => $this->getTypeId()
+            ]);
+            if ($result) {
+                // Get the id of the newly inserted row
+                $sql = "SELECT LAST_INSERT_ID()";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute();
+                $lastInsertId = $stmt->fetchColumn();
+                $sql = "INSERT INTO furniture (product_id, height, width, length) VALUES (:product_id, :height, :width, :length)";
+                $stmt = $pdo->prepare($sql);
+                $result = $stmt->execute([
+                    'product_id' => $lastInsertId,
+                    'height' => $this->getHeight(),
+                    'width' => $this->getWidth(),
+                    'length' => $this->getLength()
+                ]);
+                if ($result) {
+                    return $lastInsertId;
+                } else {
+                    var_dump($stmt->errorInfo());
+                }
+            } else {
+                var_dump($stmt->errorInfo());
+            }
+        }
+        */
+
 }

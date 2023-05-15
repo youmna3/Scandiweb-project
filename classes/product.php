@@ -1,12 +1,13 @@
 <?php
 
-abstract class Product
+abstract class Product extends Dhb
 {
     public $id;
     public $sku;
     public $name;
     public $price;
     public $type_id;
+
 
     public function __construct($id, $sku, $name, $price, $type_id)
     {
@@ -15,6 +16,8 @@ abstract class Product
         $this->name = $name;
         $this->price = $price;
         $this->type_id = $type_id;
+
+
     }
 
     public function getSku()
@@ -54,6 +57,13 @@ abstract class Product
     {
         $this->type_id = $id;
     }
+    /*
+     public function addProduct(){
+          function addType(){
+
+          };
+    }
+*/
     public function displayProduct()
     {
 
