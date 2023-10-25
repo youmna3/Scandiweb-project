@@ -6,11 +6,6 @@ $errors = [
     'sku' => '',
     'name' => '',
     'price' => '',
-    'weight' => '',
-    'size' => '',
-    'length' => '',
-    'width' => '',
-    'height' => ''
 ];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
