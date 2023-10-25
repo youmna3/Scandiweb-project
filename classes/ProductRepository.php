@@ -20,16 +20,25 @@ class ProductRepository extends Dhb
     public function addProduct(Product $product)
     {
         $pdo = $this->connect();
-        $sql = "INSERT INTO product (sku,name,price,type_id) VALUES (:sku, :name, :price, :type_id)";
-        $stmt = $pdo->prepare($sql);
-        $result = $stmt->execute([
-            'sku' => $product->getSku(),
-            'name' => $product->getName(),
-            'price' => $product->getPrice(),
-            // 'type_id' => $type_id
-            'type_id' => $product->getTypeId()
-        ]);
-        return $result;
+        $existingSkuCheck = $pdo->prepare("SELECT COUNT(*) FROM product WHERE sku = :sku");
+        $existingSkuCheck->execute(['sku' => $product->getSku()]);
+        $count = $existingSkuCheck->fetchColumn();
+
+        if ($count > 0) {
+            // SKU already exists, return false or handle the error as needed
+            return false;
+        } else {
+            $sql = "INSERT INTO product (sku,name,price,type_id) VALUES (:sku, :name, :price, :type_id)";
+            $stmt = $pdo->prepare($sql);
+            $result = $stmt->execute([
+                'sku' => $product->getSku(),
+                'name' => $product->getName(),
+                'price' => $product->getPrice(),
+                // 'type_id' => $type_id
+                'type_id' => $product->getTypeId()
+            ]);
+            return $result;
+        }
     }
     public function addBook(Book $book)
     {
@@ -110,7 +119,7 @@ class ProductRepository extends Dhb
 
     public function delete($id)
     {
-        echo "delete function called with id: $id<br>";
+        // echo "delete function called with id: $id<br>";
         $sql = "DELETE FROM product WHERE id = :id"; //named parameter
         $stmt = $this->connect()->prepare($sql);
         //$stmt->bindParam(':id', $id);

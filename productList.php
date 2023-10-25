@@ -4,9 +4,9 @@ include('./layouts/header.php');
 $productRepository = new ProductRepository();
 $products = $productRepository->getProducts();
 
-echo '<pre>';
-print_r($products);
-echo '</pre>';
+// echo '<pre>';
+// print_r($products);
+// echo '</pre>';
 ?>
 
 <body class="d-flex flex-column min-vh-100">
@@ -30,7 +30,9 @@ echo '</pre>';
     <div class="container">
         <form class="row row-cols-4 justify-content-center" action="" id='product_list' method='POST'>
             <?php
-            //maps the keys of the product data array to the corresponding product class names and properties
+            if (!isset($products) || $products === null) {
+                $products = [];
+            }
             $productClasses = [
                 'weight' => ['Book', ['weight']],
                 'size' => ['DVD', ['size']],

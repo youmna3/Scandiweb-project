@@ -1,8 +1,6 @@
 <?php
-
 include('inc/autoload.php');
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
